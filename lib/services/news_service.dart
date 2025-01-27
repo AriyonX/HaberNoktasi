@@ -26,19 +26,10 @@ class NewsService {
         final data = json.decode(response.body);
         return List<Map<String, dynamic>>.from(data['articles']);
       } else {
-        throw Exception('Haberler yüklenirken bir hata oluştu');
+        throw Exception('Haberler yüklenirken bir hata oluştu. Hata kodu: ${response.statusCode}');
       }
     } catch (e) {
-      // Hata durumunda örnek veriler döndür
-      return List.generate(
-        10,
-        (index) => {
-          'title': 'Haber ${index + 1}',
-          'description': '$country ${city ?? ''} için örnek haber içeriği',
-          'publishedAt': DateTime.now().toString(),
-          'urlToImage': 'https://via.placeholder.com/150',
-        },
-      );
+      rethrow;
     }
   }
 

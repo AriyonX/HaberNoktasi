@@ -38,12 +38,14 @@ class _NewsScreenState extends State<NewsScreen> {
         isLoading = false;
       });
     } catch (e) {
+      //print('Haberler yüklenirken bir hata oluştu:');
+      const errorMessage = 'Haberler yüklenirken bir hata oluştu';
       setState(() {
         isLoading = false;
       });
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Haberler yüklenirken bir hata oluştu')),
+          const SnackBar(content: Text(errorMessage)),
         );
       }
     }
