@@ -1,6 +1,6 @@
 # HaberNoktası
 
-![HaberNoktası Logo](logo.png)  
+![HaberNoktası Logo]([logo.png](https://github.com/AriyonX/HaberNoktasi/blob/main/Screenshot%202025-01-27%20225105.png))  
 
 HaberNoktası, ülkeler ve şehirler bazında haberleri kolayca takip edebileceğiniz, güncel ve anlık bilgilere erişim sağlayan modern bir haber uygulamasıdır. Kullanıcı dostu arayüzü ve kategorilere göre filtreleme özellikleriyle, ihtiyacınız olan tüm haberler tek bir platformda!
 
