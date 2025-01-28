@@ -38,6 +38,7 @@ class _NewsScreenState extends State<NewsScreen> {
         country: widget.selectedCountry,
         city: widget.selectedCity,
       );
+<<<<<<< HEAD
       
       if (mounted) {
         setState(() {
@@ -51,6 +52,23 @@ class _NewsScreenState extends State<NewsScreen> {
           isLoading = false;
           errorMessage = 'Haberler yüklenirken bir hata oluştu. Lütfen tekrar deneyin.';
         });
+=======
+
+      setState(() {
+        news = newsData;
+        isLoading = false;
+      });
+    } catch (e) {
+      final errorMessage = 'Haberler yüklenirken bir hata oluştu: ${e.toString()}'; // Hata mesajını göster
+      //print('Hata Detayı: $e'); // Hata detayını konsola yazdır
+      setState(() {
+        isLoading = false;
+      });
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(errorMessage)), // Hata mesajını SnackBar'da göster
+        );
+>>>>>>> 77772fb9e9620e5f416f332b0c2e80daa08bd73b
       }
     }
   }
@@ -69,6 +87,7 @@ class _NewsScreenState extends State<NewsScreen> {
       ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
+<<<<<<< HEAD
           : errorMessage != null
               ? Center(
                   child: Column(
@@ -141,6 +160,58 @@ class _NewsScreenState extends State<NewsScreen> {
                                     ),
                                   ),
                                 ],
+=======
+          : RefreshIndicator(
+              onRefresh: fetchNews,
+              child: ListView.builder(
+                itemCount: news.length,
+                itemBuilder: (context, index) {
+                  final article = news[index];
+                  return Card(
+                    margin: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        if (article['urlToImage'] != null)
+                          Image.network(
+                            article['urlToImage'],
+                            height: 200,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                            loadingBuilder: (context, child, progress) {
+                              if (progress == null) {
+                                return child;
+                              } else {
+                                return Center(
+                                  child: CircularProgressIndicator(
+                                    value: progress.expectedTotalBytes != null
+                                        ? progress.cumulativeBytesLoaded /
+                                            (progress.expectedTotalBytes ?? 1)
+                                        : null,
+                                  ),
+                                );
+                              }
+                            },
+                            errorBuilder: (context, error, stackTrace) =>
+                                const SizedBox.shrink(),
+                          ),
+                        ListTile(
+                          title: Text(
+                            article['title'] ?? 'Başlık yok',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(height: 8),
+                              Text(article['description'] ?? 'Açıklama yok'),
+                              const SizedBox(height: 8),
+                              Text(
+                                _formatDate(article['publishedAt']),
+                                style: const TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 12,
+                                ),
+>>>>>>> 77772fb9e9620e5f416f332b0c2e80daa08bd73b
                               ),
                             );
                           },
@@ -158,4 +229,4 @@ class _NewsScreenState extends State<NewsScreen> {
       return dateStr;
     }
   }
-} 
+}

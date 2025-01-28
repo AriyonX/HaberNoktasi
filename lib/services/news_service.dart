@@ -84,6 +84,7 @@ class NewsService {
         
         return articles;
       } else {
+<<<<<<< HEAD
         print('API Hatası: ${response.statusCode} - ${response.body}');
         throw Exception('Haberler yüklenirken bir hata oluştu');
       }
@@ -102,6 +103,12 @@ class NewsService {
             bağlantınızı kontrol edin veya daha sonra tekrar deneyin.''',
         },
       );
+=======
+        throw Exception('Haberler yüklenirken bir hata oluştu. Hata kodu: ${response.statusCode}');
+      }
+    } catch (e) {
+      rethrow;
+>>>>>>> 77772fb9e9620e5f416f332b0c2e80daa08bd73b
     }
   }
 } 
